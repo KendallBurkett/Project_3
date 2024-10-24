@@ -1,0 +1,221 @@
+:root {
+    /* Dark theme colors */
+    --bg-color: #2E3A40;
+    --text-color: #f4f4f4;
+    --grid-bg-color: #3E4C53;
+    --header-bg-color: #1F2A30;
+}
+
+.light-theme {
+    /* Light theme colors */
+    --bg-color: #f4f4f4;
+    --text-color: #2E3A40;
+    --grid-bg-color: #fff;
+    --header-bg-color: #ccc;
+}
+
+/* General Styling */
+body {
+    background-color: var(--bg-color);
+    font-family: Arial, sans-serif;
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    padding-top: 80px; /* Space for fixed header */
+    box-sizing: border-box;
+}
+
+h1, h2 {
+    text-align: center;
+    color: var(--text-color);
+}
+
+h3 {
+    color: var(--text-color);
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+/* Description styling */
+p {
+    color: var(--text-color);
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Header Styling */
+.header {
+    display: flex;
+    flex-direction: column; /* Stack title and buttons */
+    align-items: center; /* Center both title and buttons */
+    justify-content: center;
+    padding: 10px 20px;
+    background-color: var(--header-bg-color);
+    position: fixed; /* Keep the header fixed at the top */
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: height 0.3s, padding 0.3s; /* Smoothly reduce header size */
+    box-sizing: border-box; /* Include padding in height */
+}
+
+/* Shrink the height and padding when title is hidden */
+.hide-title .header {
+    padding: 5px 20px; /* Reduce padding when title is hidden */
+}
+
+/* Header Title (h1) */
+.header-title {
+    margin-bottom: 10px; /* Space between title and buttons */
+    transition: opacity 0.3s ease, margin 0.3s ease; /* Smooth hide and margin adjustment */
+}
+
+/* Hide title when scrolling */
+.hide-title .header-title {
+    opacity: 0;
+    margin-bottom: 0; /* Remove margin when hidden so buttons move up */
+    height: 0; /* Collapse title's height when hidden */
+}
+
+/* Theme Toggle Button */
+#theme-toggle {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    left: 20px;
+    top: 15px;
+    outline: none;
+    box-shadow: none;
+}
+
+#theme-toggle img {
+    width: 50px;
+    height: 50px;
+    display: block;
+}
+
+#theme-toggle img:hover {
+    transform: scale(1.1);
+}
+
+/* Add styles for plot toggle buttons */
+#plot-toggle {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+    transition: transform 0.3s; /* Smooth transition for button repositioning */
+}
+
+/* Ensure plot-toggle container moves up when title is hidden */
+.hide-title #plot-toggle {
+    transform: translateY(-20px); /* Move buttons up by 20px */
+}
+
+/* When header height shrinks, reduce padding-top dynamically */
+.hide-title body {
+    padding-top: 50px; /* Adjust when header shrinks */
+}
+
+/* Plot toggle buttons */
+.plot-toggle-btn {
+    background-color: var(--grid-bg-color);
+    color: var(--text-color);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.plot-toggle-btn:hover {
+    background-color: var(--header-bg-color);
+}
+
+.plot-toggle-btn.active {
+    background-color: var(--header-bg-color);
+}
+
+/* Grid Container */
+
+.content-start{
+    padding-top: 70px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(45%, 1fr));
+    grid-gap: 30px;
+    padding: 20px;
+}
+
+.grid-item {
+    background-color: var(--grid-bg-color);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.roi-table {
+    grid-column: span 2;
+    width: 96.8%;
+}
+
+/* Footer styles */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.footer-content div {
+    margin: 10px;
+}
+
+.footer-content h4 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #f1f1f1;
+}
+
+.footer-content p {
+    margin: 0;
+    font-size: 1rem;
+    color: #ccc;
+}
+
+/* Plot iframe */
+.plot-frame {
+    width: 100%;
+    height: 500px;
+    border: none;
+}
+
+/* Responsive for smaller screens */
+@media only screen and (max-width: 1024px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Data Visualization - Tele Sector</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    
+    <!-- Include Tabulator CSS -->
+    <link href="https://unpkg.com/tabulator-tables@5.1.5/dist/css/tabulator.min.css" rel="stylesheet">
+    <!-- Include Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+   <!--Header and plot toggle section-->
+   <div class="header">
+    <button id="theme-toggle">
+        <img src="{{ url_for('static', filename='images/theme-icon.png') }}" alt="Switch Theme">
+    </button> 
+
+    <h1 class="header-title">Stock Analysis: Data Visualization</h1>
+
+    <!-- Plot toggle buttons should be inside the header now -->
+    <div id="plot-toggle">
+        <button onclick="location.href='/'" class="plot-toggle-btn">Combined Sector</button>
+        <button onclick="location.href='/oil'" class="plot-toggle-btn">Oil Sector</button>
+        <button onclick="location.href='/tele'" class="plot-toggle-btn active">Telecom Sector</button>
+    </div>
+    </div> 
+
+    <!-- Tele Section with Plots -->
+    <div class="section" style="display: block;">
+        <h2 class="content-start">Tele Sector Data Analysis</h2>
+        <p>The data for the tele sector includes stock price fluctuations and volume traded for major companies.</p>
+        
+        <div class="grid-container">
+            <div class="grid-item">
+                <h3>Tele Sector Data</h3>
+                <iframe src="{{ url_for('static', filename='plots/tele/tele_plotly.html') }}" class="plot-frame"></iframe>
+            </div>
+            <div class="grid-item">
+                <h3>Tele Results Data</h3>
+                <iframe src="{{ url_for('static', filename='plots/tele/results_tele_plotly.html') }}" class="plot-frame"></iframe>
+            </div>
+            <div class="grid-item">
+                <h3>Tele Sector Data Mean</h3>
+                <iframe src="{{ url_for('static', filename='plots/mean/mean_filtered_plotly.html') }}" class="plot-frame"></iframe>
+            </div>
+            <div class="grid-item">
+                <h3>Tele Sector Results Mean</h3>
+                <iframe src="{{ url_for('static', filename='plots/mean/mean_results_plotly.html') }}" class="plot-frame"></iframe>
+            </div>
+            <div class="grid-item roi-table">
+                <h2>ROI on $1500 (USD) by Company and Quarter</h2>
+                <!-- Oil ROI Table (Tabulator) -->
+                <h3>Oil Companies ROI</h3>
+                <div id="tele-roi-table"></div> 
+                <!-- Cumulative ROI Plot -->
+                <div class="grid-item">
+                    <h3>Cumulative ROI Chart</h3>
+                    <canvas id="teleRoiChart" style="width: 70%; height: 400px;""></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            <div class="project-title">
+                <h4>Project</h4>
+                <p>Data Visualization Track</p>
+            </div>
+            <div class="team">
+                <h4>Team Members</h4>
+                <p>Juan Avila, Kendall Burkett, Patricia Taylor, Rahmeen Zindani, Cassio Sperb</p>
+            </div>
+            <div class="university">
+                <h4>University of Texas at Austin</h4>
+                <p>Bootcamp in Data Analytics</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Include Tabulator JS -->
+    <script src="https://unpkg.com/tabulator-tables@5.1.5/dist/js/tabulator.min.js"></script>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>
